@@ -1,8 +1,8 @@
 var maxX = 450;
 var maxY = 450;
 var virusNum = 5;
-var live = 'https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png';
-var dead = "https://e7.pngegg.com/pngimages/629/162/png-clipart-computer-icons-x-mark-symbol-miscellaneous-angle-thumbnail.png";
+var live = "https://cdn-icons-png.flaticon.com/512/3022/3022142.png";
+var dead = "https://cdn-icons-png.flaticon.com/512/3022/3022151.png";
 
 
 var box = document.getElementById("box");
@@ -62,11 +62,11 @@ function killVirus(obj) {
 
 function timer() {
   disp();
-  my_time = setTimeout('timer()', 300);
+  my_time = setTimeout('timer()', 200);
 }
 
 function stop() {
-  setTime = 10;
+  setTime = 60;
   virusNum = 5;
   document.getElementById("timer").innerHTML = "남은 시간: " + setTime + "초";
   document.getElementById("virus").innerHTML = "남은 개수: " + virusNum + "개";
@@ -107,10 +107,10 @@ function endGame() {
 }
 
 var play = 0;
-var setTime = 10;
+var setTime = 60;
 
 function startTime() {
-  setTime = 10;
+  setTime = 60;
   clearInterval(play);
   play = setInterval("countDownTimer()", 1000);
 }
