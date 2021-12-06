@@ -1,5 +1,10 @@
-var maxX = 500;
-var maxY = 500;
+var maxX = 450;
+var maxY = 450;
+var virusNum = 5;
+var live = 'https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png';
+var dead = "https://e7.pngegg.com/pngimages/629/162/png-clipart-computer-icons-x-mark-symbol-miscellaneous-angle-thumbnail.png";
+
+
 var box = document.getElementById("box");
 var boxTop = box.getBoundingClientRect().top;
 var boxLeft = box.getBoundingClientRect().left;
@@ -16,46 +21,107 @@ function getRange(value, min, max) {
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+  return Math.floor(Math.random() * (max - min)) + min;
 }
+
 function setStartPosition() {
-  for (var i = 1; i <= 3; i++) {
+  for (var i = 1; i <= 5; i++) {
     document.getElementById('i' + i).style.left = getRandomInt(boxLeft, boxLeft + maxX) + "px";
     document.getElementById('i' + i).style.top = getRandomInt(boxTop, boxTop + maxY) + "px";
   }
 }
 
 function disp() {
-  var l = 30;
-  for (var i = 1; i <= 3; i++) {
+  var l = 50;
+  for (var i = 1; i <= 5; i++) {
+    if (document.getElementById('i' + i).src === dead) {
+
+    } else {
     var stepX = getRandomInt(-l, l);
     var stepY = getRandomInt(-l, l);
-    //alert("Hello");
     var y = document.getElementById('i' + i).offsetTop;
     var x = document.getElementById('i' + i).offsetLeft;
-    y = getRange(y + stepY, boxLeft, boxLeft + maxX);
-    x = getRange(x + stepX, boxTop, boxTop + maxY);
-    document.getElementById('i' + i).style.top = y + "px"; // vertical movment
-    document.getElementById('i' + i).style.left = x + "px"; //horizontal move
+    y = getRange(y + stepY, boxTop, boxTop + maxY);
+    x = getRange(x + stepX, boxLeft, boxLeft + maxX);
+    document.getElementById('i' + i).style.top = y + "px";
+    document.getElementById('i' + i).style.left = x + "px";
+    }
+  }
+}
+
+function killVirus(obj) {
+  console.log(obj.id);
+  clickedId = obj.id;
+  if (document.getElementById(clickedId).src == live) {
+    document.getElementById(clickedId).src = dead;
+    document.getElementById(clickedId).style.zIndex = 0;
+    virusNum = virusNum - 1;
+    document.getElementById("virus").innerHTML = "남은 개수: " + virusNum + "개";
   }
 }
 
 function timer() {
   disp();
-  my_time = setTimeout('timer()', 100);
+  my_time = setTimeout('timer()', 300);
 }
 
 function stop() {
+  setTime = 10;
+  virusNum = 5;
+  document.getElementById("timer").innerHTML = "남은 시간: " + setTime + "초";
+  document.getElementById("virus").innerHTML = "남은 개수: " + virusNum + "개";
   console.log("stop");
   clearTimeout(my_time);
+  btnAbled();
+  clearInterval(play);
+  for (var i = 1; i <= 5; i++) {
+    document.getElementById('i' + i).style.display = "none";
+    document.getElementById('i' + i).src = live;
+  }
 }
 
 function start() {
+  for (var i = 1; i <= 5; i++) {
+    document.getElementById('i' + i).style.display = "";
+  }
   console.log("start");
   setStartPosition();
   timer();
-  // console.log(box)
-  // console.log(box.getBoundingClientRect())
-  console.log(boxTop);
-  console.log(boxLeft);
+  btnDisabled();
+  startTime();
+}
+
+function btnAbled() {
+  document.getElementById("start").disabled = false;
+}
+
+function btnDisabled() {
+  document.getElementById("start").disabled = true;
+}
+
+function endGame() {
+  if (virusNum == 0) {
+    alert("성공");
+    stop();
+  }
+}
+
+var play = 0;
+var setTime = 10;
+
+function startTime() {
+  setTime = 10;
+  clearInterval(play);
+  play = setInterval("countDownTimer()", 1000);
+}
+
+function countDownTimer() {
+  setTime--;
+  document.getElementById("timer").innerHTML = "남은 시간: " + setTime + "초";
+  endGame();
+  if (setTime < 0) {
+    clearInterval(play);
+    alert("시간 초과");
+    stop();
+  }
 }

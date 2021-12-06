@@ -7,15 +7,22 @@
     </head>
   <body>
     <header>바이러스 제거하기</header>
-
+    <div class="info">
+      <div id="timer">남은 시간: 60초</div>
+      <div id="virus">남은 개수: 5개</div>
+    </div>
     <div id="box">
-      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i1' style="position:absolute; left: -100px; top: 0; width:50px; height:50px;">
-      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i2' style="position:absolute; left: -100px; top: 0; width:50px; height:50px;">
-      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i3' style="position:absolute; left: -100px; top: 0; width:50px; height:50px;">
+      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i1' onclick="killVirus(this)" style="z-index: 1;">
+      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i2' onclick="killVirus(this)" style="z-index: 2;">
+      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i3' onclick="killVirus(this)" style="z-index: 3;" >
+      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i4' onclick="killVirus(this)" style="z-index: 4;">
+      <img src='https://www.sciencetimes.co.kr/wp-content/uploads/2020/03/800px-2019-nCoV-CDC-23312_without_background-478x480.png' id='i5' onclick="killVirus(this)" style="z-index: 5;">
     </div>
 
-    <input type=button onClick='start()' value='Start'>
-    <input type=button onClick='stop()' value='Stop'>
+    <div class="button">
+      <input type=button onClick='start()' value='게임 시작' id="start">
+      <input type=button onClick='stop()' value='리셋' id="reset">
+    </div>
 
     <script type="text/javascript" src="script.js"></script>
   </body>
