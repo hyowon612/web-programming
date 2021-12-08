@@ -6,11 +6,14 @@
       <link href="style.css" rel="stylesheet" type="text/css">
     </head>
   <body>
+    <!-- 헤더 -->
     <header>바이러스 제거하기</header>
+    <!-- 남은 시간, 남은 개수 정보 -->
     <div class="info">
       <div id="timer">남은 시간: 60초</div>
       <div id="virus">남은 개수: 5개</div>
     </div>
+    <!-- 이미지가 이동하는 박스 -->
     <div id="box">
       <img src='https://cdn-icons-png.flaticon.com/512/3022/3022142.png' id='i1' onclick="killVirus(this)" style="z-index: 1;">
       <img src='https://cdn-icons-png.flaticon.com/512/3022/3022142.png' id='i2' onclick="killVirus(this)" style="z-index: 2;">
@@ -18,12 +21,11 @@
       <img src='https://cdn-icons-png.flaticon.com/512/3022/3022142.png' id='i4' onclick="killVirus(this)" style="z-index: 4;">
       <img src='https://cdn-icons-png.flaticon.com/512/3022/3022142.png' id='i5' onclick="killVirus(this)" style="z-index: 5;">
     </div>
-
+    <!-- 시작, 리셋 버튼 -->
     <div class="button">
       <input type=button onClick='start()' value='게임 시작' id="start">
       <input type=button onClick='stop()' value='리셋' id="reset">
     </div>
-
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

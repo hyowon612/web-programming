@@ -4,6 +4,7 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 가운데 정렬 */
 body {
   display: flex;
   flex-direction: column;
